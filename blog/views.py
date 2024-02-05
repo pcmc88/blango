@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 from blog.forms import CommentForm
 import logging
 
+
 logger = logging.getLogger(__name__)
 
 def index(request):
