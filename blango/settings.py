@@ -31,6 +31,7 @@ class Dev(Configuration):
 
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = values.BooleanValue(True)
+    INTERNAL_IPS = ["0.0.0.0:8000", "127.0.0.1", "192.168.10.93"]
 
     ALLOWED_HOSTS = values.ListValue(["localhost", "0.0.0.0", ".codio.io"])
     X_FRAME_OPTIONS = 'ALLOW-FROM ' + os.environ.get('CODIO_HOSTNAME') + '-8000.codio.io'
@@ -99,16 +100,18 @@ class Dev(Configuration):
         "crispy_forms",
         'crispy_bootstrap5',
         'blog',
+        'debug_toolbar',
     ]
 
     MIDDLEWARE = [
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
-        #'django.middleware.csrf.CsrfViewMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
         'django.contrib.auth.middleware.AuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         #'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
     ]
 
     ROOT_URLCONF = 'blango.urls'
@@ -185,6 +188,7 @@ class Dev(Configuration):
     # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
     DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 
 class Prod(Dev):
