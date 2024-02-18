@@ -44,6 +44,11 @@ class Dev(Configuration):
     SESSION_COOKIE_SAMESITE = 'None'
     CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
     CRISPY_TEMPLATE_PACK = "bootstrap5"
+    SITE_ID = 1
+    ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+    ACCOUNT_EMAIL_REQUIRED = True
+    ACCOUNT_USERNAME_REQUIRED = False
+    ACCOUNT_AUTHENTICATION_METHOD = "email"
     LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -98,11 +103,17 @@ class Dev(Configuration):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+        'django.contrib.sites',
         "crispy_forms",
         'crispy_bootstrap5',
         'blango_auth',
         'blog',
         'debug_toolbar',
+        'allauth',
+        'allauth.account',
+        'allauth.socialaccount',
+        'allauth.socialaccount.providers.google',
+        #'django.contrib.sites.models.Site',
     ]
 
     MIDDLEWARE = [
@@ -192,6 +203,9 @@ class Dev(Configuration):
     DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
     ACCOUNT_ACTIVATION_DAYS = 7
+
+
+
 
 
 
