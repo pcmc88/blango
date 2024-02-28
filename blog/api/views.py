@@ -3,7 +3,7 @@ from blog.api.permissions import AuthorModifyOrReadOnly
 from blog.api.permissions import AuthorModifyOrReadOnly, IsAdminUserForObject
 
 from blango_auth.models import User
-from blog.api.serializers import PostSerializer, UserSerializer
+from blog.api.serializers import PostSerializer, UserSerializer, PostDetailSerializer
 from blog.models import Post
 
 
